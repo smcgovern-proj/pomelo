@@ -1,30 +1,25 @@
 <script>
-	export let name;
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <div class="clock-container">
+    <div class="clock">time here</div>
+    <button class="start"></button>
+  </div>
 </main>
+<div class="footer">somebody hire me please</div>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+  main {
+    background-color: rgba(175,175,175, .175);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  .clock-container {
+    border: 1px solid black; 
+  }
 </style>
