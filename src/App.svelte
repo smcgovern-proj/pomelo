@@ -2,17 +2,20 @@
   import Timer from './Timer.svelte';
   //boolean state to keep track of whether timer is currently running
   let counting = false;
+  const roundLength = 25*60;
 
   //click handler for main button
   const startHandler = (e) => {
     e.preventDefault();
     counting = !counting;
   };
+
+
 </script>
 
 <main>
   <div class="clock-container">
-    <Timer />
+    {`${minutes} : ${seconds}`}
     <button class="start-button" on:click={startHandler}>
       {counting ? "stop" : "start"}
     </button>
@@ -30,7 +33,7 @@
   }
 
   .clock-container {
-    border: 1px solid black; 
+    border: 1px solid black;
     display: flex;
     flex-flow: column nowrap;
     width: 80vh;
