@@ -51,7 +51,7 @@
 
   const reset = () => {
     clearInterval(interval);
-    counting = !counting;
+    counting = false;
     rounds = 0;
     currentTime = ROUND_LENGTH;
   };
@@ -66,40 +66,93 @@
 </script>
 
 <main>
-  <div class="clock-container">
-    <div class="clock">
-      {template(currentTime)}
+  <div class="sidebar">
+    <div class="cover-photo">
+      <img src="https://film-grab.com/wp-content/uploads/photo-gallery/kikis003.jpg?bwg=1551286014"/>
     </div>
-    <button class="start-button" on:click={buttonHandler}>
-      {counting ? "stop" : "start"}
-    </button>
-    <button class="reset-button" on:click={resetHandler}>reset</button>
+    <h1>tasks / ยังไม่เสร็จ</h1>
+    <h3>completed: {rounds}/4 rounds</h3>
+    <textarea class="tasks" autofocus spellcheck="false"></textarea>
+  </div>
+  <div class="mainbar">
+    <div class="clock-container">
+      <div class="clock">
+        {template(currentTime)}
+      </div>
+      <button class="start-button" on:click={buttonHandler}>
+        {counting ? "stop" : "start"}
+      </button>
+      <button class="reset-button" on:click={resetHandler}>reset</button>
+    </div>
   </div>
 </main>
 <div class="footer">somebody hire me please</div>
 
 <style>
+  * {
+    color: white;
+  }
+
   main {
     width: 100%;
     height: 100%;
     display: grid;
+    grid-template-columns: minmax(150px, 40%) 1fr;
+  }
+
+  .sidebar {
+    padding-top: 5%;
+    padding-left: 5%;
+    filter: brightness(85%);
+  }
+
+  .sidebar > h1 {
+    margin-top: .5rem;
+    letter-spacing: .25rem;
+  }
+
+  .sidebar > h3 {
+    margin-top: .25rem;
+    letter-spacing: .1rem;
+    margin-bottom: .25rem;
+  }
+
+  .tasks {
+    height: 70%;
+    width: 100%;
+    background-color: transparent;
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+  }
+
+  .cover-photo > img{
+    max-width: 80%;
+  }
+
+  .mainbar {
+    margin-left: 1rem;
+    display: grid;
     place-items: center;
-    color: white;
   }
 
   .clock-container {
+    --w: calc(40vw);
     border: 4px solid white;
     display: flex;
     flex-flow: column nowrap;
-    width: 80vh;
-    height: 60vh;
+    width: var(--w);
+    height: var(--w);
     align-items: center;
     justify-content: space-evenly;
-    border-radius:  1rem;
+    border-radius:  50%;
+    margin-right: min(.5rem);
+    margin-top: -2rem;
   }
 
   .clock {
-    font-size: calc(5rem + 6vw);
+    font-size: calc(3rem + 6vw);
     letter-spacing: 1rem;
   }
   .footer {
@@ -109,7 +162,6 @@
 
   button {
     margin-top: 2rem;
-    color: white;
     font-family: var(--font-display);
     font-size: 2rem;
     border: 2px solid white;
@@ -117,10 +169,15 @@
     width: 60%;
     height: 20%;
     background-color: transparent;
+    letter-spacing: .05rem;
+  }
+
+  button:hover {
+    filter: brightness(80%);
   }
 
   .reset-button {
-    /* margin-top: -2rem; */
+    margin-top: -1rem;
     /* margin-bottom: -1rem; */
     width: 30%;
     height: 15%;

@@ -16,4 +16,4 @@ db.once('open', () => {
   const Count = mongoose.model('Count', countSchema);
 });
 
-export default db;
+module.exports = db;
