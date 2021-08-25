@@ -24,6 +24,10 @@
     }
   };
 
+  const resetHandler = () => {
+    reset();
+  };
+
   const endRound = () => {
     clearInterval(interval);
     rounds++;
@@ -47,6 +51,8 @@
 
   const reset = () => {
     clearInterval(interval);
+    counting = !counting;
+    rounds = 0;
     currentTime = ROUND_LENGTH;
   };
 
@@ -54,17 +60,20 @@
   const template = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const secondsLeft = seconds % 60;
-    return `${minutes.toString().padStart(2,'0')} : ${secondsLeft.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2,'0')}:${secondsLeft.toString().padStart(2, '0')}`;
   };
 
 </script>
 
 <main>
   <div class="clock-container">
-    {template(currentTime)}
+    <div class="clock">
+      {template(currentTime)}
+    </div>
     <button class="start-button" on:click={buttonHandler}>
       {counting ? "stop" : "start"}
     </button>
+    <button class="reset-button" on:click={resetHandler}>reset</button>
   </div>
 </main>
 <div class="footer">somebody hire me please</div>
@@ -89,12 +98,17 @@
     border-radius:  1rem;
   }
 
+  .clock {
+    font-size: calc(5rem + 6vw);
+    letter-spacing: 1rem;
+  }
   .footer {
     margin-bottom: 2rem;
     text-align: center;
   }
 
-  .start-button {
+  button {
+    margin-top: 2rem;
     color: white;
     font-family: var(--font-display);
     font-size: 2rem;
@@ -103,5 +117,13 @@
     width: 60%;
     height: 20%;
     background-color: transparent;
+  }
+
+  .reset-button {
+    /* margin-top: -2rem; */
+    /* margin-bottom: -1rem; */
+    width: 30%;
+    height: 15%;
+    font-size: 1.25rem;
   }
 </style>
