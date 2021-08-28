@@ -55,6 +55,10 @@
     rounds = 0;
     currentTime = ROUND_LENGTH;
   };
+  
+  const storeTasks = (e) => {
+    let tasks = e.target.value;
+  };
 
   //template to display time in MM/SS format
   const template = (seconds) => {
