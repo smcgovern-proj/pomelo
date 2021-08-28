@@ -122,7 +122,7 @@
     width: 100%;
     background-color: transparent;
     font-family: var(--font-main);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     border: none;
     outline: none;
   }
