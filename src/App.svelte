@@ -1,13 +1,18 @@
 <script>
-  import { tick } from 'svelte';
+  import { tick } from 'svelte';  
+
+  //constants for pomodoro usage
   const ROUND_LENGTH = 1500; //one round in seconds (25*60)
   const LONG_BREAK_LENGTH = 1200; //long break in seconds (20*60)
   const SHORT_BREAK_LENGTH = 300; //short break in seconds (5*60)
+  
+  //state variables
   let rounds = 0;
   let currentTime = ROUND_LENGTH;
   let counting = false;
   let interval;
 
+  //handler functions for events
   const buttonHandler = async (e) => {
     e.preventDefault();
     counting = !counting;
@@ -56,10 +61,6 @@
     currentTime = ROUND_LENGTH;
   };
   
-  const storeTasks = (e) => {
-    let tasks = e.target.value;
-  };
-
   //template to display time in MM/SS format
   const template = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -72,25 +73,28 @@
 <main>
   <div class="sidebar">
     <div class="cover-photo">
-      <img src="https://film-grab.com/wp-content/uploads/photo-gallery/kikis003.jpg?bwg=1551286014"/>
+      <img src="https://film-grab.com/wp-content/uploads/photo-gallery/kikis003.jpg?bwg=1551286014"
+        alt="a still from kiki's delivery service"/>
     </div>
     <h1>tasks / ยังไม่เสร็จ</h1>
     <h3>completed: {rounds}/4 rounds</h3>
-    <textarea class="tasks" autofocus spellcheck="false"></textarea>
+    <textarea class="tasks" 
+      autofocus 
+      spellcheck="false" 
+      ></textarea>
   </div>
   <div class="mainbar">
     <div class="clock-container">
       <div class="clock">
         {template(currentTime)}
       </div>
-      <button class="start-button" on:click={buttonHandler}>
+      <button class="start-button" type="button" on:click={buttonHandler}>
         {counting ? "stop" : "start"}
       </button>
-      <button class="reset-button" on:click={resetHandler}>reset</button>
+      <button class="reset-button" type="button" on:click={resetHandler}>reset</button>
     </div>
   </div>
 </main>
-<div class="footer">somebody hire me please</div>
 
 <style>
   * {
@@ -122,7 +126,6 @@
   }
 
   .tasks {
-    height: 70%;
     width: 100%;
     background-color: transparent;
     font-family: var(--font-main);
@@ -131,8 +134,10 @@
     outline: none;
   }
 
-  .cover-photo > img{
+  .cover-photo > img { 
     max-width: 80%;
+    border-radius: .5rem;
+    box-shadow: 2px 1px 1px rgba(0,0,0, .5);
   }
 
   .mainbar {
@@ -159,10 +164,6 @@
     font-size: calc(3rem + 6vw);
     letter-spacing: 1rem;
   }
-  .footer {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
 
   button {
     margin-top: 2rem;
@@ -182,7 +183,6 @@
 
   .reset-button {
     margin-top: -1rem;
-    /* margin-bottom: -1rem; */
     width: 30%;
     height: 15%;
     font-size: 1.25rem;
